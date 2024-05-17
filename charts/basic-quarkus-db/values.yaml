@@ -1,0 +1,129 @@
+replicaCount: 1
+
+image:
+  # repository: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}/{{ include "basic-quarkus-db.fullname" . }}:{{ .Chart.AppVersion }}'
+  repository: 'ghcr.io/mikecroft/basic-quarkus-db:{{ .Chart.AppVersion }}'
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+env:
+  - name: MY_NEW_ENV_VAR
+    value: 'wibble'
+
+
+service:
+  type: ClusterIP
+  port: 8080
+
+
+route:
+  enabled: true
+
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths: []
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources:
+  limits:
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+localPostgres:
+  disabled: false
+  env:
+  - name: POSTGRESQL_USER
+    value: quarkus
+  - name: POSTGRESQL_PASSWORD
+    value: quarkus
+  - name: POSTGRESQL_DATABASE
+    value: quarkus
+  # image: "image-registry.openshift-image-registry.svc:5000/openshift/postgresql@sha256:37d992f9159b539fff761065fc36cf59d90540e6e6657bf85830a162f6806060"
+  image: "quay.io/fedora/postgresql-15@sha256:4b587a1131f9fee16513c350727b765bd47332cc403d15da22880b41440c5d38"
+
+postgresql:
+  postgresql:
+    auth:
+      postgresPassword: quarkus
+      username: quarkus
+      password: quarkus
+      database: quarkus
+
+
+build:
+  enabled: true
+  gitClone:
+    params:
+    - name: url
+      value: 'https://github.com/mikecroft/basic-quarkus-db.git'
+    - name: revision
+      value: master
+    - name: submodules
+      value: 'true'
+    - name: depth
+      value: '1'
+    - name: sslVerify
+      value: 'true'
+    - name: crtFileName
+      value: ca-bundle.crt
+    - name: deleteExisting
+      value: 'true'
+    - name: verbose
+      value: 'true'
+    - name: gitInitImage
+      value: 'registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:66f219b4d54a41b945cb5715ecd1fbb5d25431cf8dad4b06914a4cdc65b298cc'
+    - name: userHome
+      value: /home/git
+  maven:
+    params:
+    - name: MAVEN_IMAGE
+      value: 'registry.redhat.io/ubi8/openjdk-17@sha256:a8165bc2cd5051a96d6937e25ed03155bbd4b731da6e58cebfe2ea83209c16d8'
+    - name: GOALS
+      value:
+        - package
+        - '-DskipTests'
+    - name: PROXY_PROTOCOL
+      value: http
+    - name: CONTEXT_DIR
+      value: .
+  buildah:
+    params:
+    - name: IMAGE
+      value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}/{{ include "basic-quarkus-db.fullname" . }}:{{ .Chart.AppVersion }}'
+    - name: BUILDER_IMAGE
+      value: 'registry.redhat.io/rhel8/buildah@sha256:b48f410efa0ff8ab0db6ead420a5d8d866d64af846fece5efb185230d7ecf591'
+    - name: STORAGE_DRIVER
+      value: vfs
+    - name: DOCKERFILE
+      value: ./Dockerfile
+    - name: CONTEXT
+      value: .
+    - name: TLSVERIFY
+      value: 'false'
+    - name: FORMAT
+      value: oci
+    - name: SKIP_PUSH
+      value: 'false'
