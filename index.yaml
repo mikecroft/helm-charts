@@ -27,4 +27,20 @@ entries:
     urls:
     - https://github.com/mikecroft/helm-charts/releases/download/basic-quarkus-db-0.1.0/basic-quarkus-db-0.1.0.tgz
     version: 0.1.0
-generated: "2025-06-19T14:47:22.183865244Z"
+  bootstrap-project:
+  - apiVersion: v2
+    appVersion: v0.0.1
+    created: "2025-06-19T15:18:35.510540031Z"
+    description: "A Helm chart for deploying and managing Openshift projects \U0001F986"
+    digest: 008be3e127044a11473e9504387767f1a5dc9db3d4a6ce70f7c731322dd579c5
+    home: https://github.com/redhat-cop/helm-charts
+    icon: https://www.iconpacks.net/icons/1/free-rocket-icon-1206-thumb.png
+    maintainers:
+    - name: springdo
+    - name: ckavili
+    - name: eformat
+    name: bootstrap-project
+    urls:
+    - https://github.com/mikecroft/helm-charts/releases/download/bootstrap-project-1.0.2/bootstrap-project-1.0.2.tgz
+    version: 1.0.2
+generated: "2025-06-19T15:18:35.510546062Z"
