@@ -1,5 +1,21 @@
 apiVersion: v1
 entries:
+  argocd-app-of-app:
+  - apiVersion: v2
+    created: "2025-06-19T14:47:22.183853451Z"
+    description: Generic chart for creating series of Argo CD Applications and AppProjects
+      following the app-of-apps pattern
+    digest: da166adf650922e96a0af25693867dd6b90dc75ee5f5af302820e7d289e831cf
+    kubeVersion: '>=1.14.6'
+    maintainers:
+    - name: Gerald Nunn
+    name: argocd-app-of-app
+    sources:
+    - https://github.com/gnunn-gitops/argocd-app-of-app-chart
+    type: application
+    urls:
+    - https://github.com/mikecroft/helm-charts/releases/download/argocd-app-of-app-0.3.0/argocd-app-of-app-0.3.0.tgz
+    version: 0.3.0
   basic-quarkus-db:
   - apiVersion: v2
     appVersion: 0.1.0
@@ -11,4 +27,4 @@ entries:
     urls:
     - https://github.com/mikecroft/helm-charts/releases/download/basic-quarkus-db-0.1.0/basic-quarkus-db-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-17T15:16:44.836792558Z"
+generated: "2025-06-19T14:47:22.183865244Z"
