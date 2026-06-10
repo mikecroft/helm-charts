@@ -1,0 +1,9 @@
+{{- range $key, $val := .Values }}
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: {{ $key }}
+  namespace: {{ include "operator-install.namespace" (dict $key $val) }}
+  annotation:
+    argocd.argoproj.io/sync-wave: "2"
+{{- end }}

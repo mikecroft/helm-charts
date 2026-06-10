@@ -1,0 +1,19 @@
+{{- range $key, $val := .Values }}
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: {{ $key }}
+  namespace: {{ include "operator-install.namespace" (dict $key $val) }}
+  annotation:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  channel: {{ default "stable" $val.channel }}
+  installPlanApproval: {{ default "Manual" $val.installPlanApproval }}
+  name: {{ $key }}
+  source: {{ default "redhat-operator-index" $val.source }}
+  sourceNamespace: {{ default "openshift-marketplace" $val.sourceNamespace }}
+  {{- if $val.config }}
+  config:
+{{ $val.config | toYaml | indent 4 }}
+  {{- end }}
+{{- end }}

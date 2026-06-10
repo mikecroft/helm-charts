@@ -1,0 +1,5 @@
+apiVersion: v2
+name: argocd-app-of-apps
+version: 0.0.1
+description: Generic chart for creating series of Argo CD Applications and AppProjects following the app-of-apps pattern
+type: application
