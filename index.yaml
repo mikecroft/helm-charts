@@ -16,6 +16,17 @@ entries:
     urls:
     - https://github.com/mikecroft/helm-charts/releases/download/argocd-app-of-app-0.3.0/argocd-app-of-app-0.3.0.tgz
     version: 0.3.0
+  argocd-app-of-apps:
+  - apiVersion: v2
+    created: "2026-06-10T16:35:23.088918014Z"
+    description: Generic chart for creating series of Argo CD Applications and AppProjects
+      following the app-of-apps pattern
+    digest: 5cedc64390e3155086666abb70b90887edf64dcf310d7ead78ea487372d3463e
+    name: argocd-app-of-apps
+    type: application
+    urls:
+    - https://github.com/mikecroft/helm-charts/releases/download/argocd-app-of-apps-0.0.1/argocd-app-of-apps-0.0.1.tgz
+    version: 0.0.1
   basic-quarkus-db:
   - apiVersion: v2
     appVersion: 0.1.0
@@ -43,4 +54,15 @@ entries:
     urls:
     - https://github.com/mikecroft/helm-charts/releases/download/bootstrap-project-1.0.2/bootstrap-project-1.0.2.tgz
     version: 1.0.2
-generated: "2025-06-19T15:18:35.510546062Z"
+  operator-install:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2026-06-10T16:35:23.268256749Z"
+    description: A Helm chart for Kubernetes
+    digest: 7619d22610d141d03e16db34b0116e4b6112d90e388bd137b392306b8b8ee23e
+    name: operator-install
+    type: application
+    urls:
+    - https://github.com/mikecroft/helm-charts/releases/download/operator-install-0.1.0/operator-install-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-06-10T16:35:23.268261113Z"
