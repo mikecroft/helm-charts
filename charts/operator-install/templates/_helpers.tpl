@@ -30,6 +30,20 @@ Create chart name and version as used by the chart label.
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
+
+{{/*
+Set namespace name of fallback.
+*/}}
+{{- define "operator-install.namespace" -}}
+{{- range $k, $v := . }}
+{{- if $v.createNamespace }}
+{{- printf "%s" $k }}
+{{- else }}
+{{- printf "openshift-operators" }}
+{{- end }}
+{{- end }}
+{{- end }}
+
 {{/*
 Common labels
 */}}
