@@ -10,7 +10,7 @@ spec:
   channel: {{ default "stable" $val.channel }}
   installPlanApproval: {{ default "Manual" $val.installPlanApproval }}
   name: {{ $key }}
-  source: {{ default "redhat-operator-index" $val.source }}
+  source: {{ default "redhat-operators" $val.source }}
   sourceNamespace: {{ default "openshift-marketplace" $val.sourceNamespace }}
   {{- if $val.config }}
   config:
