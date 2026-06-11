@@ -4,7 +4,7 @@ kind: Subscription
 metadata:
   name: {{ $key }}
   namespace: {{ include "operator-install.namespace" (dict $key $val) }}
-  annotation:
+  annotations:
     argocd.argoproj.io/sync-wave: "3"
 spec:
   channel: {{ default "stable" $val.channel }}
